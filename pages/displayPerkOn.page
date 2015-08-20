@@ -1,0 +1,3 @@
+<apex:page standardcontroller="Perk__c" showHeader="false" sidebar="false" >
+  <apex:canvasApp applicationName="PerkOn" parameters="{'perkOn':'{!Perk__c.Category__c}'}"/>
+</apex:page>

@@ -1,0 +1,41 @@
+<apex:page controller="PerkCollateralController" action="{!renderDocuments}">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSection columns="2">
+                    <apex:pageBlockSectionItem >
+                        <apex:inputFile value="{!document.body}" filename="{!document.name}" id="file"/> 
+                    </apex:pageBlockSectionItem>  
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Description" for="description"/>
+                        <apex:inputTextarea value="{!document.description}" id="description"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Folder " for="folder">
+                            <apex:selectList value="{!selectedFolder}" multiselect="false" size="1" id="folder">                         
+                                <apex:selectOptions value="{!folders}" />                         
+                            </apex:selectList>
+                        </apex:outputLabel>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>                
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!upload}" value="Upload"/>
+            </apex:pageBlockButtons>     
+        </apex:pageBlock>
+        <apex:pageBlock title="Uploaded Collateral">
+            <apex:pageBlockSection columns="2">
+                <apex:repeat value="{!folders}" var="f">
+                    <apex:pageBlockSection title="{!f.label}" >               
+                        <apex:repeat value="{!documents}" var="o">   
+                            <apex:outputPanel rendered="{!IF(o.FolderId = f.value, true, false)}">
+                                <a href="https://na12.salesforce.com/{!o.Id}">{!o.Name}</a>  
+                                <!-- <apex:outputText title="Size" value="{!o.BodyLength}" /> -->
+                            </apex:outputPanel>                 
+                        </apex:repeat> 
+                    </apex:pageBlockSection>   
+                </apex:repeat>             
+            </apex:pageBlockSection> 
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
