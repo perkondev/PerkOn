@@ -1,0 +1,32 @@
+<apex:page standardController="Perk__c" extensions="ExampleController">
+  The Current Time is : {!currentDateTime}  <br/>
+  
+  <apex:form enctype="multipart/form-data">
+    <apex:commandLink value="refresh"/>
+    <apex:pageBlock title="Upload Perk Fine Print" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Upload" columns="2">
+                <apex:outputLabel for="aName">Perk Name:</apex:outputLabel>
+                <apex:inputText value="{!perkName}"/>             
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+  </apex:form>
+  
+  <apex:form enctype="multipart/form-data">
+       <apex:pageBlock >
+           <apex:pageBlockSection >
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Attachments" />
+                    <apex:inputFile value="{!file}" id="fileupload"
+                        fileName="{!UploadedfileName}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+             <apex:pageBlockButtons >
+                <apex:commandButton action="{!submit}" value="Submit"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+     </apex:form>
+
+</apex:page>
