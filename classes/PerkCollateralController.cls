@@ -51,9 +51,9 @@ public with sharing class PerkCollateralController {
             } finally {
                document.body = null;
                document = new Document();
-               documents = [SELECT Description, BodyLength, Body, Id, FolderId, Name, Url FROM Document];
-               //List<Folder> PerkOnFolders = [SELECT Name, Id FROM Folder WHERE Type='Document' AND Name LIKE 'PerkOn %'];
-               //documents = [SELECT Description, Id, FolderId, Name, Url FROM Document WHERE FolderId IN :PerkOnFolders];
+               // documents = [SELECT Description, BodyLength, Body, Id, FolderId, Name, Url FROM Document];
+               List<Folder> PerkOnFolders = [SELECT Name, Id FROM Folder WHERE Type='Document' AND Name LIKE 'PerkOn %'];
+               documents = [SELECT Description, Id, FolderId, Name, Url FROM Document WHERE FolderId IN :PerkOnFolders];
             }
     }
     
